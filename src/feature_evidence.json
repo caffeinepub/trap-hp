@@ -1,0 +1,118 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-single-page-horsepower-calculator-that-computes-estimated-horsepower-from-vehicle-weight-and-quarter-mile-trap-speed-using-a-clearly-displayed-formula-and-units",
+      "featureTitle": "Create a single-page horsepower calculator that computes estimated horsepower from vehicle weight and quarter-mile trap speed, using a clearly displayed formula and units.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/main.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-input-validation-and-user-guidance-for-the-calculator-fields",
+      "featureTitle": "Add input validation and user guidance for the calculator fields.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-horsepower-calculation-in-the-motoko-backend-as-a-query-method-and-have-the-frontend-call-it-to-compute-the-result",
+      "featureTitle": "Implement the horsepower calculation in the Motoko backend as a query method and have the frontend call it to compute the result.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-lightweight-results-panel-that-explains-the-output-and-includes-a-reset-action",
+      "featureTitle": "Add a lightweight results panel that explains the output and includes a reset action.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/ResultsPanel.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-coherent-visual-theme-suitable-for-a-motorsport-drag-racing-calculator-and-enforce-it-consistently-across-layout-typography-and-components",
+      "featureTitle": "Apply a coherent visual theme suitable for a motorsport/drag-racing calculator and enforce it consistently across layout, typography, and components.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-generated-static-images-for-branding-background-and-render-them-in-the-ui-from-frontend-public-assets-generated",
+      "featureTitle": "Add generated static images for branding/background and render them in the UI from frontend/public/assets/generated.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

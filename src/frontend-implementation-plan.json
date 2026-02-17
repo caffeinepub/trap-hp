@@ -1,0 +1,162 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Trap HP — Horsepower Calculator (Weight + Trap Speed)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build a single-page UI to calculate estimated horsepower from vehicle weight and quarter-mile trap speed with clear units and formula display.",
+      "acceptanceCriteria": [
+        "Page includes inputs for vehicle weight and trap speed and a button to calculate.",
+        "The result is shown as estimated horsepower with sensible rounding (e.g., whole HP).",
+        "The UI clearly labels units (default: pounds (lb) and miles per hour (mph)) and displays the formula used (e.g., HP = weight * (trapSpeed/234)^3)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the single-page calculator layout (header, calculator form, and placeholders for results/formula) with clearly labeled units (lb, mph) and a visible formula section."
+        },
+        {
+          "path": "frontend/src/lib/hp.ts",
+          "operation": "create",
+          "description": "Add shared calculation helpers/constants (e.g., formula string, rounding behavior) for UI display consistency; keep the primary compute action delegated to the backend call (REQ-3)."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Ensure the app renders the new App component and that global styles are loaded for the single-page calculator experience."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add client-side validation, inline error messaging, and disable calculation until inputs are valid.",
+      "acceptanceCriteria": [
+        "Weight and trap speed fields reject empty, non-numeric, zero, and negative values with inline error messages.",
+        "Trap speed input is constrained to a reasonable range (e.g., 1–400 mph) and weight to a reasonable range (e.g., 1–20,000 lb), with errors if out of range.",
+        "Calculate button is disabled (or no-op with errors) until inputs are valid."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useTrapHpForm.ts",
+          "operation": "create",
+          "description": "Implement form state + validation logic (required, numeric, >0, range checks for 1–20,000 lb and 1–400 mph) and expose derived validity/errors for inline messaging and button disabled state."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire inputs to the validation hook, show inline errors near fields, and disable (or prevent) calculation until inputs are valid."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Call a backend query method via the generated canister actor to compute horsepower and handle backend failure states.",
+      "acceptanceCriteria": [
+        "Backend exposes a query method that accepts weight and trap speed (as numbers) and returns the computed horsepower as a number.",
+        "Frontend uses the generated canister actor to call the backend method when the user calculates.",
+        "Frontend displays a clear error state if the backend call fails."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Update the frontend canister typing to include the required horsepower calculator method signature accepting weight + trap speed and returning a number, so the app can call it in a type-safe way."
+        },
+        {
+          "path": "frontend/src/lib/backendClient.ts",
+          "operation": "create",
+          "description": "Add a small frontend wrapper that obtains/uses the generated canister actor and exposes a function to request horsepower computation from the backend query method."
+        },
+        {
+          "path": "frontend/src/hooks/useTrapHpCalculation.ts",
+          "operation": "create",
+          "description": "Implement the async calculation action that calls the backend client, tracks loading/error state, and returns computed horsepower to the UI."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Use the backend-backed calculation hook for the Calculate action and render a clear error state/message when the backend call fails."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add a results panel showing computed horsepower, echoed inputs, a disclaimer, and a reset action.",
+      "acceptanceCriteria": [
+        "After calculation, a results card shows estimated horsepower prominently and repeats the input values used.",
+        "A short disclaimer is shown (e.g., 'Estimated horsepower based on trap speed; real-world results vary').",
+        "A Reset/Clear button returns the form to its initial state."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ResultsPanel.tsx",
+          "operation": "create",
+          "description": "Create a results card/panel component that displays the rounded horsepower prominently, repeats the validated inputs (lb, mph), shows a short disclaimer, and provides a Reset/Clear action."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Render the ResultsPanel after a successful calculation and wire the reset action to clear form values, errors, and computed state."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Apply a consistent motorsport/drag-racing visual theme (dark asphalt, high contrast, safety-accent) across layout and components.",
+      "acceptanceCriteria": [
+        "Use a distinct, consistent theme (e.g., dark 'asphalt' background, high-contrast typography, accent color such as safety orange or lime) without using a blue/purple primary palette.",
+        "The page has a clean centered layout that works on mobile and desktop.",
+        "Form controls and result card follow the same design system (spacing, borders, focus states)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global theme styling (dark asphalt base, high-contrast text, safety orange/lime accents, consistent focus/hover states) and ensure the palette avoids blue/purple primaries; align with Tailwind CSS variables already used by the template."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Apply a centered responsive layout, consistent spacing/typography, and cohesive styling for form controls and results panel to match the motorsport theme."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust/extend theme tokens (as needed) to support the motorsport palette (e.g., safety accent) and ensure consistent styling utilities across the calculator UI."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Wire generated static branding images (logo + background) from frontend/public/assets/generated into the UI.",
+      "acceptanceCriteria": [
+        "Generated images are committed under frontend/public/assets/generated and referenced directly by the frontend (no backend image serving).",
+        "The app displays the logo/icon in the header and uses the background image subtly (with readable contrast)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/trap-hp-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated logo/icon asset at frontend/public/assets/generated/trap-hp-logo.dim_512x512.png for direct frontend use."
+        },
+        {
+          "path": "frontend/public/assets/generated/dragstrip-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated subtle background texture at frontend/public/assets/generated/dragstrip-bg.dim_1920x1080.png for direct frontend use."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Render the header logo using frontend/public/assets/generated/trap-hp-logo.dim_512x512.png and apply a subtle page background using frontend/public/assets/generated/dragstrip-bg.dim_1920x1080.png with sufficient contrast for readable content."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Ensure global styles support the subtle background texture (frontend/public/assets/generated/dragstrip-bg.dim_1920x1080.png) while preserving readable contrast (e.g., overlay/opacity conventions via CSS variables or utility-friendly classes)."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-17T03:25:44.011Z",
+  "summary": "Frontend adds a weight+trap-speed calculator UI with client-side validation and a results panel, plus theme styling. However, backend computation/canister integration is incorrect/missing, required generated image assets are not present in the diff, and the results reset action is not implemented in the results panel. The diff also introduces Internet Identity/auth-related hooks (a stated non-goal) and a different horsepower calculation (torque/rpm) in the backend.",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Implement the horsepower calculation in the Motoko backend as a query method (weight + trap speed) and have the frontend call it; show a clear error state on backend failure.",
+      "reason": "Backend method signature and formula do not match (uses torque/rpm), and the frontend performs the calculation locally with a simulated delay rather than calling the canister. No backend failure error state is evidenced.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Results panel includes a reset/clear action that returns the form to its initial state.",
+      "reason": "ResultsPanel declares an onReset prop but does not render any Reset/Clear control and does not use the onReset prop; while App has handleReset, there is no evidence it is wired into the results panel UI.",
+      "evidence": [
+        "frontend/src/components/ResultsPanel.tsx",
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Commit generated static images under frontend/public/assets/generated and reference them in the UI (logo in header; subtle background).",
+      "reason": "UI references /assets/generated/dragstrip-bg.dim_1920x1080.png, but no generated image files are included in the diff summary under frontend/public/assets/generated (and no logo asset evidence is shown).",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication and identity-dependent actor creation logic.",
+      "reason": "BuildRequest explicitly lists user accounts/Internet Identity authentication as a non-goal, but the diff adds InternetIdentityProvider and hooks using @dfinity/auth-client and identity-based actor selection.",
+      "evidence": [
+        "frontend/src/main.tsx",
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Backend horsepower calculation based on torque and RPM (HP=(torque*rpm)/5252).",
+      "reason": "Requested calculator is weight + quarter-mile trap speed (HP = weight * (trapSpeed/234)^3). Backend implements a different calculation with different parameters.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Social media icon integration (X/Facebook/Instagram) and additional UI elements not requested.",
+      "reason": "Not part of any requirement and outside the described single-purpose calculator scope.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.8,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/ResultsPanel.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

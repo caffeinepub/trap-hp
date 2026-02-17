@@ -1,0 +1,15 @@
+{
+  "backend/main.mo": "Motoko actor exposing a query function that computes horsepower from torque and RPM.",
+  "feature_evidence.json": "Feature-evidence report mapping features to frontend files and components with metadata.",
+  "frontend-file-summaries.txt": "Existing short summaries for several frontend files including App, ResultsPanel, index.css, and tailwind config.",
+  "frontend/index.css": "Base Tailwind CSS setup defining extensive OKLCH color variables for light and dark themes.",
+  "frontend/index.html": "HTML entry point mounting the React app and loading main.tsx.",
+  "frontend/src/App.tsx": "React component handling input validation, horsepower calculation from weight and trap speed, UI layout, and results rendering.",
+  "frontend/src/components/ResultsPanel.tsx": "Results display card showing calculated horsepower, input summary, disclaimer, and badges.",
+  "frontend/src/hooks/useActor.ts": "React hook that creates and manages a backend actor instance tied to the user’s identity using react-query.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Internet Identity auth provider and hooks managing login, stored identities, and authentication state.",
+  "frontend/src/index.css": "Defines Tailwind layers, light/dark theme color variables, global transitions, and custom scrollbar styles.",
+  "frontend/src/main.tsx": "Bootstraps the React app, wrapping it with React Query and the InternetIdentityProvider.",
+  "frontend/tailwind.config.js": "Configures Tailwind with custom color tokens, typography, container settings, animations, and plugin extensions.",
+  "project_state.json": "Stores project metadata, feature definitions, requirements, and image needs for the horsepower calculator app."
+}

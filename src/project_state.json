@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "App to calculate horsepower based on vehicle weight and trap speed.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minimal drag-racing themed app logo/icon, flat vector style, transparent background (trap-hp-logo.dim_512x512.png)\n- Subtle dark asphalt/drag-strip background texture, wide, low-contrast (dragstrip-bg.dim_1920x1080.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-single-page-horsepower-calculator-that-computes-estimated-horsepower-from-vehicle-weight-and-quarter-mile-trap-speed-using-a-clearly-displayed-formula-and-units",
+      "title": "Create a single-page horsepower calculator that computes estimated horsepower from vehicle weight and quarter-mile trap speed, using a clearly displayed formula and units.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-input-validation-and-user-guidance-for-the-calculator-fields",
+      "title": "Add input validation and user guidance for the calculator fields.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-horsepower-calculation-in-the-motoko-backend-as-a-query-method-and-have-the-frontend-call-it-to-compute-the-result",
+      "title": "Implement the horsepower calculation in the Motoko backend as a query method and have the frontend call it to compute the result.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-lightweight-results-panel-that-explains-the-output-and-includes-a-reset-action",
+      "title": "Add a lightweight results panel that explains the output and includes a reset action.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-visual-theme-suitable-for-a-motorsport-drag-racing-calculator-and-enforce-it-consistently-across-layout-typography-and-components",
+      "title": "Apply a coherent visual theme suitable for a motorsport/drag-racing calculator and enforce it consistently across layout, typography, and components.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-images-for-branding-background-and-render-them-in-the-ui-from-frontend-public-assets-generated",
+      "title": "Add generated static images for branding/background and render them in the UI from frontend/public/assets/generated.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build an app that calculates horsepower from weight and trap speed.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Trap HP",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

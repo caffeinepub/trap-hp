@@ -1,0 +1,6 @@
+{
+  "frontend/src/App.tsx": "Main application component featuring a single-page horsepower calculator with weight and trap speed inputs, client-side validation, calculation logic using the HP = weight × (trap_speed / 234)³ formula, results display, and a motorsport-themed layout with header, footer, and branding assets.",
+  "frontend/src/components/ResultsPanel.tsx": "Results display component that shows the calculated horsepower prominently along with input summary, disclaimer about estimation accuracy, and additional metadata badges.",
+  "frontend/src/index.css": "Global styles defining a motorsport-themed OKLCH color system with dark asphalt backgrounds and safety orange accents for both light and dark modes, plus custom scrollbar styling.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom font families (Inter, JetBrains Mono) and maintaining the OKLCH color token system for the motorsport theme."
+}
